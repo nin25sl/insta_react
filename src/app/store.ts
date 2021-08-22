@@ -1,0 +1,23 @@
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+//登録
+import authReducer from '../features/auth/authSlice';
+import postReducer from '../features/post/postSlice';
+
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    post: postReducer,
+  },
+});
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+
+//typeScriptを使用した場合、dispatchで肩を定義、コンポーネントで使用するためにexport
+export type appDispatch = typeof store.dispatch;
